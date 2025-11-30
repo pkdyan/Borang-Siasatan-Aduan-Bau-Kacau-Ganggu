@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borang Verifikasi Punca Bau & Audit Teknikal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            font-size: 11pt;
+        }
+
+        /* A4 Paper Settings */
+        .page {
+            background-color: white;
+            width: 210mm;
+            height: 297mm; /* Fixed height for A4 */
+            margin: 0 auto 20px auto;
+            padding: 15mm 15mm 20mm 15mm; /* Increased bottom padding for footer */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden; /* Prevent spillover */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 14pt;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 10pt;
+            font-weight: normal;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-style: italic;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+
+        .section-header {
+            background-color: #e0e0e0;
+            padding: 4px 8px;
+            font-weight: bold;
+            border: 1px solid #000;
+            margin-top: 8px;
+            text-transform: uppercase;
+            font-size: 9pt;
+        }
+
+        .row {
+            display: flex;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            align-items: center;
+        }
+
+        .col {
+            flex: 1;
+            padding: 0 5px;
+        }
+
+        /* Inputs styling */
+        input[type="text"], input[type="date"], input[type="time"], input[type="number"] {
+            border: none;
+            border-bottom: 1px dotted #000;
+            background: transparent;
+            font-family: inherit;
+            font-size: inherit;
+            padding: 2px 5px;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+            background-color: #e8f0fe;
+        }
+
+        textarea {
+            width: 100%;
+            border: 1px dotted #000;
+            font-family: inherit;
+            font-size: inherit;
+            padding: 5px;
+            resize: none;
+            background: transparent;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 4px;
+            font-size: 9pt;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        .checkbox-group label {
+            display: block;
+            margin-bottom: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            transform: scale(1.1);
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .sketch-box {
+            border: 1px solid #000;
+            height: 250px; /* Reduced from 350px to save space */
+            width: 100%;
+            margin-top: 5px;
+            background-color: #fff;
+            position: relative;
+        }
+        
+        .sketch-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ddd;
+            font-size: 14pt;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        .signature-box {
+            margin-top: 20px; /* Reduced margin */
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sig-block {
+            width: 45%;
+            text-align: center;
+        }
+
+        .sig-line {
+            border-bottom: 1px solid #000;
+            margin-bottom: 5px;
+            margin-top: 40px;
+        }
+
+        .critical {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .verification-box {
+            border: 2px solid #000;
+            padding: 10px; /* Reduced padding */
+            margin-top: 10px;
+            background-color: #ffebee;
+        }
+
+        .gps-box {
+            border: 1px solid #000;
+            padding: 5px;
+            margin-top: 5px;
+            background-color: #f9fbe7;
+        }
+
+        /* Footer styling - Fixed Position at bottom of PAGE container */
+        .footer {
+            position: absolute;
+            bottom: 8mm; /* Raised slightly from edge */
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 5px;
+            background-color: white;
+        }
+        
+        .page-number {
+            font-size: 8pt;
+            position: absolute;
+            right: 15mm;
+            bottom: 8mm;
+            color: #666;
+        }
+
+        /* Controls Area */
+        .controls {
+            text-align: center;
+            padding: 15px;
+            background: #333;
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn-reset {
+            background-color: #f44336;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Print Settings */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            body {
+                background-color: white;
+                padding: 0;
+                margin: 0;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                width: 210mm;
+                height: 297mm;
+            }
+            .no-print, .controls {
+                display: none;
+            }
+            .verification-box, .gps-box {
+                background-color: white !important;
+                border: 2px solid black;
+            }
+            /* Inputs clean print */
+            input[type="text"], input[type="date"], input[type="time"], textarea {
+                border: none;
+                border-bottom: 1px solid #000;
+                background: transparent !important;
+            }
+        }
+    </style>
+    <script>
+        function clearForm() {
+            if(confirm("Adakah anda pasti mahu memadam semua isian borang?")) {
+                const inputs = document.querySelectorAll('input[type="text"], input[type="date"], input[type="time"], input[type="number"], textarea');
+                inputs.forEach(input => input.value = '');
+                
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(cb => cb.checked = false);
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="controls no-print">
+        <button class="btn" onclick="window.print()">🖨️ CETAK BORANG (3 MUKA)</button>
+        <button class="btn btn-reset" onclick="clearForm()">🗑️ PADAM ISIAN</button>
+        <br><small>Disetkan untuk kertas A4. Gunakan 'Scale: 100%' atau 'Default' pada tetapan pencetak.</small>
+    </div>
+
+    <!-- MUKA 1: BORANG TEMU BUAL -->
+    <div class="page" id="form1">
+        <h1>Borang Siasatan Aduan Bau & Kacau Ganggu</h1>
+        <h2>Unit Kesihatan Pekerjaan & Alam Sekitar (KPAS) PKD Yan</h2>
+
+        <div class="section-header">A. BUTIRAN SIASATAN & RESPONDEN</div>
+        <div class="row">
+            <div class="col" style="flex: 0 0 100px;"><strong>Tarikh:</strong></div>
+            <div class="col"><input type="date"></div>
+            
+            <div class="col" style="flex: 0 0 60px;"><strong>Masa:</strong></div>
+            <div class="col"><input type="time"></div>
+            
+            <div class="col" style="flex: 0 0 100px;"><strong>No. Rujukan:</strong></div>
+            <div class="col"><input type="text" placeholder="No. Aduan"></div>
+        </div>
+        <div class="row">
+            <div class="col" style="flex: 0 0 140px;"><strong>Nama Responden:</strong></div>
+            <div class="col"><input type="text" placeholder="Nama Penuh"></div>
+            
+            <div class="col" style="flex: 0 0 80px;"><strong>No. Tel:</strong></div>
+            <div class="col"><input type="text" placeholder="01X-XXXXXXX"></div>
+        </div>
+        <div class="row" style="align-items: flex-start;">
+            <div class="col" style="flex: 0 0 140px; margin-top: 5px;"><strong>Alamat Premis:</strong></div>
+            <div class="col">
+                <textarea rows="3" placeholder="Masukkan alamat penuh premis di sini..."></textarea>
+            </div>
+        </div>
+
+        <div class="section-header">B. PROFIL KEJADIAN (Sila Tandakan √)</div>
+        <table>
+            <tr>
+                <th width="30%">1. Kekerapan Limpahan (Frequency)</th>
+                <th width="70%">2. Punca Limpahan Air (Point of Entry) <span class="critical">*PENTING</span></th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Setiap kali hujan lebat</label>
+                        <label><input type="checkbox"> Hujan renyai</label>
+                        <label><input type="checkbox"> Berlaku walaupun cuaca panas</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> <strong>Limpahan Jalan:</strong> Masuk dari longkang jalan ke anjung (Porch)</label>
+                        <label><input type="checkbox"> <strong>Limpahan Dalaman:</strong> Keluar dari lubang tandas / bilik air (Backflow)</label>
+                        <label><input type="checkbox"> <strong>Limpahan Lurang:</strong> Keluar dari 'Manhole' IWK di jalan</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="section-header">C. BUKTI FIZIKAL & DERIA (Forensik)</div>
+        <table>
+            <tr>
+                <th>3. Warna Air</th>
+                <th>4. Bau Air</th>
+                <th>5. Tempoh Surut</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Jingga / Coklat (Lumpur)</label>
+                        <label><input type="checkbox"> Hitam / Kelabu / Berbuih (Kumbahan)</label>
+                        <label><input type="checkbox"> Berminyak / Pelangi</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Bau Hanyir / Tanah</label>
+                        <label><input type="checkbox"> Bau Najis / Telur Busuk (Septic)</label>
+                        <label><input type="checkbox"> Bau Kimia</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Cepat (< 1 Jam)</label>
+                        <label><input type="checkbox"> Lambat (> 4 Jam)</label>
+                        <label><input type="checkbox"> Tidak Surut (Stagnant)</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="section-header">D. IMPAK KESIHATAN AWAM</div>
+        <div class="checkbox-group" style="padding: 10px; border: 1px solid #000;">
+            <strong>6. Gejala Kesihatan (Dalam 14 hari lepas):</strong><br>
+            <label><input type="checkbox"> Demam Panas / Sakit Urat (Disyaki Leptospirosis/Denggi)</label>
+            <label><input type="checkbox"> Gatal-gatal Kulit / Ruam</label>
+            <label><input type="checkbox"> Cirit-birit / Muntah</label>
+            <br>
+            <strong>7. Vektor (Pest):</strong><br>
+            <label><input type="checkbox"> Tikus banyak kelihatan</label>
+            <label><input type="checkbox"> Lipas keluar dari lubang air</label>
+        </div>
+
+        <div class="section-header">E. PENGESAHAN</div>
+        <div class="signature-box">
+            <div class="sig-block">
+                <div class="sig-line"></div>
+                <strong>Tandatangan Responden</strong><br>
+                <small>Pengadu / Wakil Rumah</small>
+            </div>
+            <div class="sig-block">
+                <div class="sig-line"></div>
+                <strong>Tandatangan Pegawai Pemeriksa (PPKP)</strong><br>
+                <small>Unit KPAS</small>
+            </div>
+        </div>
+        
+        <div class="footer">Hakcipta Pejabat Kesihatan Daerah Yan 2025</div>
+        <div class="page-number">Muka 1/3</div>
+    </div>
+
+    <!-- MUKA 2: VERIFIKASI BAHAGIAN 1 (Pemerhatian & GPS) -->
+    <div class="page" id="form2_part1">
+        <h1>Borang Verifikasi Punca Bau & Kacau Ganggu</h1>
+        <h2>Siasatan Lapangan Unit Kesihatan (PPKP) - Muka 1</h2>
+
+        <div class="row" style="border: 1px solid #000; padding: 5px; background: #fff;">
+            <div class="col" style="flex: 0 0 150px;"><strong>LOKASI (Nama Jalan):</strong></div>
+            <div class="col"><input type="text" value="Jalan Indah"></div>
+            
+            <div class="col" style="flex: 0 0 120px;"><strong>Dari Rumah No:</strong></div>
+            <div class="col"><input type="text"></div>
+            
+            <div class="col" style="flex: 0 0 80px;"><strong>Ke No:</strong></div>
+            <div class="col"><input type="text"></div>
+        </div>
+
+        <div class="section-header">BAHAGIAN 1: PEMERHATIAN SUMBER KACAU GANGGU</div>
+        <table>
+            <tr>
+                <th width="30%">Komponen Diperiksa</th>
+                <th width="40%">Keadaan Fizikal (Tanda √)</th>
+                <th>Status Bau (Hidu)</th>
+            </tr>
+            <tr>
+                <td><strong>Lurang Jalan</strong><br>(Manhole Bulat)</td>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> <strong>Melimpah Air Keluar</strong></label>
+                        <label><input type="checkbox"> Air Paras Tinggi (Tak melimpah)</label>
+                        <label><input type="checkbox"> Penutup Pecah/Hilang</label>
+                    </div>
+                </td>
+                <td style="background-color: #fff9c4;">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> <strong>Berbau Najis</strong></label>
+                        <label><input type="checkbox"> Tiada Bau</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Longkang / Parit</strong><br>(Depan Rumah)</td>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> <strong>Air Bertakung (Stagnant)</strong></label>
+                        <label><input type="checkbox"> Tersumbat (Sampah/Lumpur)</label>
+                        <label><input type="checkbox"> Aliran Lancar</label>
+                    </div>
+                </td>
+                <td style="background-color: #e1f5fe;">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> <strong>Berbau Busuk/Reput</strong></label>
+                        <label><input type="checkbox"> Bau Hanyir Biasa</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Perangkap Sisa</strong><br>(Grease Trap/IC Rumah)</td>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Penuh Sisa Makanan/Lemak</label>
+                        <label><input type="checkbox"> Tersumbat</label>
+                        <label><input type="checkbox"> Bersih</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Berbau Masam</label>
+                        <label><input type="checkbox"> Tiada Bau</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="section-header">BAHAGIAN 2: VERIFIKASI JENIS BAU (Bila Tiada Air)</div>
+        <table style="font-size: 10pt;">
+            <tr>
+                <td width="30%"><strong>Kategori Bau Dikesan</strong></td>
+                <td><strong>Lokasi Bau Paling Kuat (Tanda 'X')</strong></td>
+            </tr>
+            <tr>
+                <td><strong>1. Bau Septik / Najis</strong><br><small>(Gas H2S / Pembetungan)</small></td>
+                <td>
+                    [ ] Di sekitar Lurang Jalan (Manhole)<br>
+                    [ ] Di dalam tandas rumah<br>
+                    [ ] Di paip udara (Vent pipe)
+                </td>
+            </tr>
+            <tr>
+                <td><strong>2. Bau Reput / Bangkai</strong><br><small>(Sampah / Binatang Mati)</small></td>
+                <td>
+                    [ ] Di dalam longkang bertakung<br>
+                    [ ] Di kawasan tong sampah
+                </td>
+            </tr>
+        </table>
+
+        <!-- BAHAGIAN 3: REKOD KOORDINAT GPS -->
+        <div class="section-header" style="background-color: #c8e6c9; border-color: #2e7d32;">BAHAGIAN 3: REKOD KOORDINAT LOKASI (GPS)</div>
+        <div class="gps-box">
+            <p style="margin: 5px 0; font-size: 9pt;"><em>*Sila gunakan telefon pintar untuk mendapatkan bacaan Latitud & Longitud di lokasi tepat.</em></p>
+            <table style="border: none;">
+                <tr>
+                    <td width="50%" style="border: 1px dashed #999; vertical-align: top;">
+                        <strong>A. KOORDINAT TITIK LIMPAHAN AIR</strong><br>
+                        (Jika ada air melimpah keluar)<br><br>
+                        Latitud (N): <input type="text" placeholder="Contoh: 5.8345"><br><br>
+                        Longitud (E): <input type="text" placeholder="Contoh: 100.3456">
+                    </td>
+                    <td width="50%" style="border: 1px dashed #999; vertical-align: top;">
+                        <strong>B. KOORDINAT PUNCA BAU PALING KUAT</strong><br>
+                        (Di mana bau paling busuk dikesan)<br><br>
+                        Latitud (N): <input type="text" placeholder="Latitud"><br><br>
+                        Longitud (E): <input type="text" placeholder="Longitud">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="footer">Hakcipta Pejabat Kesihatan Daerah Yan 2025</div>
+        <div class="page-number">Muka 2/3</div>
+    </div>
+
+    <!-- MUKA 3: VERIFIKASI BAHAGIAN 2 (Lakaran & Keputusan) -->
+    <div class="page" id="form2_part2">
+        <h1>Borang Verifikasi Punca Bau & Kacau Ganggu</h1>
+        <h2>Siasatan Lapangan Unit Kesihatan (PPKP) - Sambungan</h2>
+
+        <div class="row" style="border: 1px solid #000; padding: 5px; background: #fff;">
+            <div class="col"><strong>Sambungan dari Muka Sebelah:</strong> Sila pastikan lokasi sepadan.</div>
+        </div>
+
+        <div class="section-header">BAHAGIAN 4: LAKARAN LOKASI (Tandakan 'X' pada sumber bau)</div>
+        <div class="sketch-box">
+            <div class="sketch-watermark">Ruang Lakaran Tapak & Arah Angin</div>
+        </div>
+        <div style="font-size: 9pt; color: #555; margin-top: 5px;">
+            *Sila lakarkan kedudukan rumah, jalan, lurang, parit dan tandakan arah punca bau dengan jelas.
+        </div>
+
+        <div class="verification-box">
+            <h3 style="margin:0; text-align:center;">BAHAGIAN 5: KEPUTUSAN VERIFIKASI (WAJIB ISI)</h3>
+            <p style="text-align:center; margin: 10px 0; font-size: 11pt;">Adakah terdapat <strong>LIMPAHAN AIR BERBAU BUSUK</strong> yang aktif semasa pemeriksaan?</p>
+            
+            <div style="display:flex; justify-content:center; gap: 40px; margin-top: 15px; margin-bottom: 15px;">
+                <div style="text-align:center;">
+                    <input type="checkbox" style="transform: scale(2.0);">
+                    <br><br><strong>YA (ADA)</strong><br>
+                    <small style="color:red;">Risiko Kesihatan Tinggi</small><br>
+                </div>
+                <div style="text-align:center;">
+                    <input type="checkbox" style="transform: scale(2.0);">
+                    <br><br><strong>TIDAK (TIADA)</strong><br>
+                    <small style="color:green;">Hanya Bau</small><br>
+                </div>
+            </div>
+            
+            <div style="margin-top: 10px; border-top: 1px dotted #000; padding-top:10px;">
+                <strong>Rumusan Pegawai Pemeriksa:</strong><br>
+                <div class="checkbox-group" style="margin-top: 5px;">
+                    <label><input type="checkbox"> <strong>Kacau Ganggu Wujud (Nuisance Exists)</strong></label>
+                    <label><input type="checkbox"> <strong>Tiada Kacau Ganggu (No Nuisance)</strong></label>
+                    <label><input type="checkbox"> <strong>Perlu Siasatan Lanjut</strong></label>
+                </div>
+                <br>
+                <strong>Catatan Tambahan:</strong>
+                <textarea rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="signature-box">
+            <div class="sig-block">
+                <div class="sig-line"></div>
+                <strong>Tandatangan Pegawai Pemeriksa</strong>
+            </div>
+            <div class="sig-block">
+                <div class="sig-line"></div>
+                <strong>Cop Jawatan (PPKP)</strong>
+            </div>
+        </div>
+
+        <div class="footer">Hakcipta Pejabat Kesihatan Daerah Yan 2025</div>
+        <div class="page-number">Muka 3/3</div>
+    </div>
+
+</body>
+</html>
